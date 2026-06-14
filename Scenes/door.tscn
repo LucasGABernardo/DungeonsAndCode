@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://6k4bawd82uru"]
+
+[ext_resource type="Script" uid="uid://6pmbnm4w5v7f" path="res://Scenes/door.gd" id="1_p0e35"]
+[ext_resource type="Texture2D" uid="uid://mda7wsruv4tw" path="res://assets/Props Mundo dos Mortos/PNG/doors_lever_chest_animation.png" id="2_fahql"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab4ky"]
+atlas = ExtResource("2_fahql")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a43ba"]
+atlas = ExtResource("2_fahql")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_burcv"]
+atlas = ExtResource("2_fahql")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj2pw"]
+atlas = ExtResource("2_fahql")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c32u"]
+atlas = ExtResource("2_fahql")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovubi"]
+atlas = ExtResource("2_fahql")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sl2j7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab4ky")
+}],
+"loop": false,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a43ba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_burcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj2pw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8c32u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovubi")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihyep"]
+size = Vector2(22, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkskb"]
+size = Vector2(32, 27)
+
+[node name="Door" type="StaticBody2D" unique_id=387903058]
+script = ExtResource("1_p0e35")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1018595699]
+sprite_frames = SubResource("SpriteFrames_sl2j7")
+animation = &"open"
+autoplay = "close"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1231643867]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_ihyep")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2129875732]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=754250317]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_gkskb")
+debug_color = Color(0.9409646, 1.01074575e-05, 0.61487883, 0.41960785)

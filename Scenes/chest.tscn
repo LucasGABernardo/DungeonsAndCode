@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://dyirjtm5gp0o0"]
+
+[ext_resource type="Script" uid="uid://cu12qyjts27d4" path="res://Scenes/chest.gd" id="1_lyb87"]
+[ext_resource type="Texture2D" uid="uid://mda7wsruv4tw" path="res://assets/Props Mundo dos Mortos/PNG/doors_lever_chest_animation.png" id="2_cjfl1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bagqn"]
+atlas = ExtResource("2_cjfl1")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmguq"]
+atlas = ExtResource("2_cjfl1")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq33m"]
+atlas = ExtResource("2_cjfl1")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6qf6"]
+atlas = ExtResource("2_cjfl1")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25pds"]
+atlas = ExtResource("2_cjfl1")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uovm1"]
+atlas = ExtResource("2_cjfl1")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mrmno"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bagqn")
+}],
+"loop": false,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmguq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq33m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6qf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25pds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uovm1")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k15qg"]
+size = Vector2(17, 17)
+
+[node name="Chest" type="Area2D" unique_id=1646742727]
+script = ExtResource("1_lyb87")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=592024385]
+sprite_frames = SubResource("SpriteFrames_mrmno")
+animation = &"close"
+autoplay = "close"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1801190850]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_k15qg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
