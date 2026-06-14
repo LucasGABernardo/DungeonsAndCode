@@ -11,6 +11,8 @@ var invencivel = false
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area_ataque_player = $AttackPlayer
 @onready var colisor_ataque = $AttackPlayer/CollisionShape2D
+@onready var som_dano = $SomDano
+@onready var som_morte = $SomMorte
 
 func _ready():
 	colisor_ataque.disabled = true
@@ -74,14 +76,13 @@ func receber_dano(quantidade):
 	if Gerenciador.vidas <= 0:
 		morrer()
 	else:
+		som_dano.play()
 		tomando_dano = true
 		invencivel = true
 		velocity = Vector2.ZERO
 		
 		animated_sprite_2d.play("damage-" + dir)
-		
 		await animated_sprite_2d.animation_finished
-		
 		tomando_dano = false
 		
 		await get_tree().create_timer(0.2).timeout
@@ -89,8 +90,10 @@ func receber_dano(quantidade):
 
 func morrer():
 	set_physics_process(false)
+	
+	som_morte.play()
 	animated_sprite_2d.play("death-" + dir)
-	print("Game Over definitivo")
+	print("Game Over")
 	
 	await animated_sprite_2d.animation_finished
 	get_tree().change_scene_to_file("res://Scenes/game_over.tscn")

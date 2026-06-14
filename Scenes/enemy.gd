@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 70.0
-var vida = 2
+var vida = 4
 var vivo = true
 var dir_inimigo = "down" 
 var tomando_dano = false
@@ -12,6 +12,8 @@ var player_no_alcance_ataque = false
 @onready var sprite = $AnimatedSprite2D
 @onready var area_deteccao = $Detection
 @onready var area_ataque = $Attack
+@onready var som_dano_inimigo = $SomDanoInimigo
+@onready var som_morte_inimigo = $SomMorteInimigo
 
 func _ready():
 	sprite.play("idle-down")
@@ -77,6 +79,7 @@ func receber_dano(quantidade):
 	if vida <= 0:
 		morrer()
 	else:
+		som_dano_inimigo.play()
 		tomando_dano = true
 		velocity = Vector2.ZERO 
 		sprite.play("damage-" + dir_inimigo)
@@ -87,6 +90,8 @@ func receber_dano(quantidade):
 func morrer():
 	vivo = false
 	velocity = Vector2.ZERO
+	
+	som_morte_inimigo.play()
 	sprite.play("death-" + dir_inimigo)
 	
 	Gerenciador.pontos += 1

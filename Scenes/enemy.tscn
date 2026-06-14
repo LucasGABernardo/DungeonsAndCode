@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://buf7ghc0a20x8" path="res://assets/Inimigos Orcs/PNG/Orc1/With_shadow/orc1_death_with_shadow.png" id="4_8uf12"]
 [ext_resource type="Texture2D" uid="uid://c0sv0e3xj6eji" path="res://assets/Inimigos Orcs/PNG/Orc1/With_shadow/orc1_idle_with_shadow.png" id="5_po0sg"]
 [ext_resource type="Texture2D" uid="uid://b8hko88xfksbs" path="res://assets/Inimigos Orcs/PNG/Orc1/With_shadow/orc1_walk_with_shadow.png" id="6_haro7"]
+[ext_resource type="AudioStream" uid="uid://mf57dveay0jc" path="res://assets/Sounds/hurtenemy.wav" id="7_auwsv"]
+[ext_resource type="AudioStream" uid="uid://55n55d47qv4y" path="res://assets/Sounds/deathenemy.wav" id="8_8uf12"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_56vhr"]
 atlas = ExtResource("2_1dp5w")
@@ -1036,3 +1038,9 @@ shape = SubResource("CircleShape2D_oyt4t")
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_4m0yq")
 debug_color = Color(0.96421045, 0.12812573, 0.36343232, 0.41960785)
+
+[node name="SomDanoInimigo" type="AudioStreamPlayer2D" parent="." unique_id=26821409]
+stream = ExtResource("7_auwsv")
+
+[node name="SomMorteInimigo" type="AudioStreamPlayer2D" parent="." unique_id=8090977]
+stream = ExtResource("8_8uf12")
